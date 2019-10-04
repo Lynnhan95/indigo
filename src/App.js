@@ -16,10 +16,12 @@ class App extends Component {
 
   }
 
+  //Adjust dashboard size according to screen size
   onResize= () => {
     this.setState({ screenWidth: window.innerWidth, screenHeight: window.innerHeight - 120 })
   }
 
+  //Call back function for hovering 
   onHover = (e) => {
     // console.log(e)
     this.setState({ hover: e.state })
@@ -35,6 +37,7 @@ class App extends Component {
     this.setState({yearSliderValue : value})
   }
 
+  //helper functions
   getCropMax = (Arr) => {
     const CORPArray = []
     for(let i=0; i<Arr.length; i++){
@@ -53,6 +56,7 @@ class App extends Component {
 
   }
   
+  //Get data from CSV
   componentWillMount(){
     csv('/usda_crops_5yr.csv').then(data => {
       data.forEach(function(d) {
@@ -79,6 +83,7 @@ class App extends Component {
     })
   }
 
+  //Resizing
   componentDidMount() {
     window.addEventListener('resize', this.onResize, false)
     this.onResize()
@@ -135,8 +140,9 @@ class App extends Component {
 
   }
   
-
+  //Render the whole dashboard
   render() {
+    //Dropdown values
     const DropDown = (
       <Select defaultValue="CORN" onChange={this.dropDownChange} className="dropDown" style={{ width: 120 }} >
         <Option value="CORN">CORN</Option>
@@ -146,7 +152,7 @@ class App extends Component {
         <Option value="WHEAT">WHEAT</Option>
       </Select>
     )
-
+    //Year slider values
     const marks = {
       2014: '2014',
       2015: '2015',
@@ -159,7 +165,6 @@ class App extends Component {
       <Slider min={2014} max={2018} vertical onChange={this.yearSliderChange} marks={marks} included={false} defaultValue={2018} />
     )
 
-    
     return (
       <div className="App">
         <div className="App-header">

@@ -6,7 +6,7 @@ class BarChart2 extends React.Component {
     constructor(props) {
 
       super(props);
-
+      //Chart configuration
       this.state = {
         options: {
           plotOptions: {
@@ -119,7 +119,7 @@ class BarChart2 extends React.Component {
       }
     }
 
-
+    //Once any of the two filters are changed, pass in the filtered data for components data
     componentDidUpdate(prevProps){
         if(prevProps.countyData !== this.props.countyData){
             const countyData = this.props.countyData["countyData"]
@@ -130,12 +130,14 @@ class BarChart2 extends React.Component {
                 countyArr.push(countyData[i]["COUNTY_NAME"])
                 countyVal.push(countyData[i]["TOTAL_YIELD"])
             }
+            //Update Series(Value)
             this.setState({
                 series: [{
                     name: countyData[0]["STATE_CODE"],
                     data: countyVal.sort(function(a, b){return a-b})
                 }]
             })
+            //Update X-axis label(Category)
             this.setState({
                 options: {
                    ...this.state.options,

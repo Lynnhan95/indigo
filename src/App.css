@@ -1,6 +1,7 @@
 body{
   background: #eee;
 }
+
 .App {
   text-align: center;
 }
@@ -55,6 +56,7 @@ body{
 .yearSlider{
   height: 520px;
 }
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

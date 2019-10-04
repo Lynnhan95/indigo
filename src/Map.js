@@ -13,17 +13,20 @@ class WorldMap extends Component {
       stateData: []
     }
   }
-
+  //Set projection function that maps coordinates data to GeoJson
   projection() {
     return geoMercator()
           .scale(800)
           .center([-98.5795, 39.8283])
   }
-
+  //Data post-processing 
+  //Set StateObj for 48 states, that enables retrieving  state data with state key name, the data is presented as Array
   getStateObj(Arr){
+    //Initialize StateObj
     const stateObj = {
       "AL":[], "AR":[], "AZ":[], "CA":[], "CO":[], "CT":[], "DE":[], "FL":[], "GA":[], "HI":[], "IA":[], "ID":[], "IL":[], "IN":[], "KS":[], "KY":[], "LA":[], "MA":[], "MD":[], "ME":[], "MI":[], "MN":[], "MO":[], "MS":[], "MT":[], "NC":[], "ND":[], "NE":[], "NJ":[], "NM":[], "NV":[], "NY":[], "OH":[], "OK":[], "OR":[], "PA":[], "RI":[], "SC":[], "SD":[], "TN":[], "TX":[] , "UT":[] , "VA":[] , "VT":[] , "WA":[], "WI":[], "WV":[], "WY":[]
     }
+    //Shallow copy value
     for(let i=0; i< Arr.length; i++){
       switch (Arr[i]["STATE_CODE"]){
         case "AL":
@@ -225,6 +228,7 @@ class WorldMap extends Component {
     return stateObj
   }
 
+  //Helper function
   getAverage(Arr){
     var sum = null
     for(let i=0; i<Arr.length; i++){
@@ -232,7 +236,8 @@ class WorldMap extends Component {
     }
     return (sum/(Arr.length))
   }
-  //fetch U.S topojson data
+
+  //Fetch U.S topojson data
   componentDidMount() {
     fetch("/us-states.json")
       .then(response => {
@@ -247,9 +252,7 @@ class WorldMap extends Component {
 
         })
       })
-
   }
-
 
   componentDidUpdate(prevProps){
     if(prevProps.filteredData !== this.props.filteredData){
@@ -257,6 +260,7 @@ class WorldMap extends Component {
       const filteredData = this.props.filteredData
       const stateObj = this.getStateObj(filteredData)
       console.log(stateObj)
+      //Set stateData with some values that can not get from the original CSV file(such as coordinates), and calculate average acreage for each state.
       var stateData = [
         {state: 'AL', id: 0, coordinates: [-86.9023, 32.3182], acreage: null, countyData: stateObj.AL},
         {state: 'AR', id: 1, coordinates: [-91.8318, 35.2010], acreage: null, countyData: stateObj.AR},
@@ -307,6 +311,7 @@ class WorldMap extends Component {
         {state: 'WV', id: 46, coordinates: [-80.4549, 38.5976], acreage: null, countyData: stateObj.WV},
         {state: 'WY', id: 47, coordinates: [-107.2903, 43.0760], acreage: null, countyData: stateObj.WY},
       ]
+      //Use a temporal array to collect state-level data
       var acreageArr = []
       for(var property in stateObj){
         if(stateObj.hasOwnProperty(property)){
@@ -528,7 +533,7 @@ class WorldMap extends Component {
 
   //render U.S state-level map
   /* style={{cursor: "pointer", fill: this.props.hoverElement === d.id ? "yellow" : "red", stroke: "#fff", strokeOpacity: 0.5 }} */
-
+  //Render GeoJson path, and mapping Rect, of which size depends on data value
   render() {
     const radius = scaleSqrt().domain([0, this.props.maxData]).range([0,80])
     const state =  this.state.usMap.map((d,i) => (
