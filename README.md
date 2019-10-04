@@ -5,6 +5,9 @@ the past 5 years.
 ## View case study here:
 http://www.lynnhan.me/Indigo/
 
+## Attention:
+If you can't see any chart below the map, don't worry, simply hover over a state(rectangular) on the map.
+
 ## Design:
 
 ## Tools:
