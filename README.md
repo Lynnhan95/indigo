@@ -9,6 +9,7 @@ http://www.lynnhan.me/Indigo/
 If you can't see any chart below the map, don't worry! Simply hover over a state(rectangular) on the map.
 
 ## Design:
+![indigo_caseStudy.jpg](https://i.loli.net/2019/10/04/wCljvphBDUeKxIk.jpg)
 
 ## Tools:
 1. D3.js </br>
