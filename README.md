@@ -1,4 +1,4 @@
-Hi, this is a case study for Indigo crop data, mainly built with [d3.js](https://d3js.org) and React[Create React App](https://github.com/facebookincubator/create-react-app). This case study aims at providing a clear dashboard for the U.S crop data cross time and cross region, and to help users gain a sense of where the crops are and how acreage has changed over
+Hi, this is a case study for Indigo crop data, mainly built with [d3.js](https://d3js.org) and React [Create React App](https://github.com/facebookincubator/create-react-app). This case study aims at providing a clear dashboard for the U.S crop data cross time and cross region, and to help users gain a sense of where the crops are and how acreage has changed over
 the past 5 years.
 
 # indigo
