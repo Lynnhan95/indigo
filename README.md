@@ -6,7 +6,7 @@ the past 5 years.
 http://www.lynnhan.me/Indigo/
 
 ## Attention:
-If you can't see any chart below the map, don't worry, simply hover over a state(rectangular) on the map.
+If you can't see any chart below the map, don't worry! Simply hover over a state(rectangular) on the map.
 
 ## Design:
 
